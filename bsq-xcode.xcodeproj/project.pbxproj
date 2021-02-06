@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		C7C1114E25CED7C700760B92 /* bsq-xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bsq-xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C1115125CED7C700760B92 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		C7C1115825CED7F400760B92 /* bsq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bsq.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				C7C1115125CED7C700760B92 /* main.c */,
+				C7C1115825CED7F400760B92 /* bsq.h */,
 			);
 			path = "bsq-xcode";
 			sourceTree = "<group>";

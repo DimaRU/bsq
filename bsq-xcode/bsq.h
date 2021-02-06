@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssantiag <ssantiag@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 16:57:41 by ssantiag          #+#    #+#             */
-/*   Updated: 2021/02/06 16:57:41 by ssantiag         ###   ########.fr       */
+/*   Created: 2021/02/06 16:58:15 by ssantiag          #+#    #+#             */
+/*   Updated: 2021/02/06 16:58:15 by ssantiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "bsq.h"
+#ifndef BSQ_H
+#define BSQ_H
 
-int main(int argc, char *argv[])
-{
-    return 0;
-}
+
+#endif
