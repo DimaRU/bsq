@@ -45,7 +45,10 @@
 				C7C1115025CED7C700760B92 /* bsq-xcode */,
 				C7C1114F25CED7C700760B92 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 		C7C1114F25CED7C700760B92 /* Products */ = {
 			isa = PBXGroup;
@@ -74,6 +77,7 @@
 				C7C1114A25CED7C700760B92 /* Sources */,
 				C7C1114B25CED7C700760B92 /* Frameworks */,
 				C7C1114C25CED7C700760B92 /* CopyFiles */,
+				865F59CC191E14E755DDCEEF /* Norminettelint run script */,
 			);
 			buildRules = (
 			);
@@ -115,6 +119,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		865F59CC191E14E755DDCEEF /* Norminettelint run script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Norminettelint run script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Norminette check script\n~/Applications/bin/norminettelint\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C7C1114A25CED7C700760B92 /* Sources */ = {
@@ -183,6 +204,10 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+				);
 			};
 			name = Debug;
 		};
@@ -234,6 +259,10 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+				);
 			};
 			name = Release;
 		};
