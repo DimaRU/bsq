@@ -30,7 +30,7 @@
 		0ABA681C25D11D78002B12AF /* ft_putstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_putstr.c; sourceTree = "<group>"; };
 		0ABA681F25D11D80002B12AF /* ft_strcmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_strcmp.c; sourceTree = "<group>"; };
 		0ABA682225D11F7A002B12AF /* ft_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ft_tools.h; sourceTree = "<group>"; };
-		C7C1114E25CED7C700760B92 /* bsq-xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bsq-xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7C1114E25CED7C700760B92 /* bsq */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bsq; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C1115125CED7C700760B92 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C7C1115825CED7F400760B92 /* bsq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bsq.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,7 +49,7 @@
 		C7C1114525CED7C700760B92 = {
 			isa = PBXGroup;
 			children = (
-				C7C1115025CED7C700760B92 /* bsq-xcode */,
+				C7C1115025CED7C700760B92 /* bsq */,
 				C7C1114F25CED7C700760B92 /* Products */,
 			);
 			indentWidth = 4;
@@ -60,12 +60,12 @@
 		C7C1114F25CED7C700760B92 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C7C1114E25CED7C700760B92 /* bsq-xcode */,
+				C7C1114E25CED7C700760B92 /* bsq */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C7C1115025CED7C700760B92 /* bsq-xcode */ = {
+		C7C1115025CED7C700760B92 /* bsq */ = {
 			isa = PBXGroup;
 			children = (
 				C7C1115125CED7C700760B92 /* main.c */,
@@ -75,15 +75,15 @@
 				C7C1115825CED7F400760B92 /* bsq.h */,
 				0ABA682225D11F7A002B12AF /* ft_tools.h */,
 			);
-			path = "bsq-xcode";
+			path = bsq;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C7C1114D25CED7C700760B92 /* bsq-xcode */ = {
+		C7C1114D25CED7C700760B92 /* bsq */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7C1115525CED7C700760B92 /* Build configuration list for PBXNativeTarget "bsq-xcode" */;
+			buildConfigurationList = C7C1115525CED7C700760B92 /* Build configuration list for PBXNativeTarget "bsq" */;
 			buildPhases = (
 				C7C1114A25CED7C700760B92 /* Sources */,
 				C7C1114B25CED7C700760B92 /* Frameworks */,
@@ -94,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = "bsq-xcode";
+			name = bsq;
 			productName = "bsq-xcode";
-			productReference = C7C1114E25CED7C700760B92 /* bsq-xcode */;
+			productReference = C7C1114E25CED7C700760B92 /* bsq */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -126,7 +126,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C7C1114D25CED7C700760B92 /* bsq-xcode */,
+				C7C1114D25CED7C700760B92 /* bsq */,
 			);
 		};
 /* End PBXProject section */
@@ -310,7 +310,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7C1115525CED7C700760B92 /* Build configuration list for PBXNativeTarget "bsq-xcode" */ = {
+		C7C1115525CED7C700760B92 /* Build configuration list for PBXNativeTarget "bsq" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7C1115625CED7C700760B92 /* Debug */,
