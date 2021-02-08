@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tools.h                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssantiag <ssantiag@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 10:27:58 by ssantiag          #+#    #+#             */
-/*   Updated: 2021/02/08 10:27:58 by ssantiag         ###   ########.fr       */
+/*   Created: 2021/01/22 01:39:09 by ssantiag          #+#    #+#             */
+/*   Updated: 2021/01/22 01:39:09 by ssantiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TOOLS_H
-# define FT_TOOLS_H
+int	ft_strlen(char *str)
+{
+	char *end_pointer;
 
-void			ft_putstr(char *str);
-int				ft_strcmp(char *s1, char *s2);
-int				ft_strlen(char *str);
-
-#endif
+	end_pointer = str;
+	while (*end_pointer != '\0')
+		end_pointer++;
+	return ((int)(end_pointer - str));
+}
