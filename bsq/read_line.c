@@ -47,7 +47,7 @@ char	*read_line(int fileid)
 
 	alloc_size = 64;
 	line = malloc(alloc_size);
-	i = -1;
+	i = 0;
 	while (line != NULL)
 	{
 		while (i < alloc_size)
