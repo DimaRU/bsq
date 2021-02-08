@@ -15,10 +15,10 @@
 
 bool		check_map(t_map map)
 {
-	int i;
+	long i;
 
 	i = -1;
-	while (++i < map.cols * map.rows)
+	while (++i < (long)map.cols * map.rows)
 	{
 		if (!(map.map[i] == map.empty || map.map[i] == map.obstacle))
 			return (false);

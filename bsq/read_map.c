@@ -30,6 +30,12 @@ int		ft_atoi(char *str)
 	return (number);
 }
 
+bool	cleanup(char *memory)
+{
+	free(memory);
+	return (false);
+}
+
 bool	load_map(t_map *map, int fileid)
 {
 	char	*first_line;
@@ -40,7 +46,7 @@ bool	load_map(t_map *map, int fileid)
 		return (false);
 	map->cols = ft_strlen(first_line);
 	if ((map->map = malloc((long)map->rows * map->cols + 1)) == NULL)
-		return (false);
+		return (cleanup(first_line));
 	i = -1;
 	while (++i < map->cols)
 		map->map[i] = first_line[i];
@@ -50,10 +56,7 @@ bool	load_map(t_map *map, int fileid)
 	{
 		len = (int)read(fileid, map->map + map->cols * i, map->cols + 1);
 		if (len != map->cols + 1 || map->map[map->cols * (i + 1)] != '\n')
-		{
-			free(map->map);
-			return (false);
-		}
+			return (cleanup(map->map));
 	}
 	return (true);
 }
@@ -69,7 +72,7 @@ bool	read_map(t_map *map, int fileid)
 	if (count < 4)
 	{
 		free(param_line);
-		return (true);
+		return (false);
 	}
 	map->empty = param_line[count - 3];
 	map->obstacle = param_line[count - 2];
