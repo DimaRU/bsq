@@ -21,8 +21,14 @@ bool	process_file(int fileid)
 	t_map map;
 
 	if (!read_map(&map, fileid))
+	{
+		put_map_error();
 		return (false);
-	solve(map);
+	}
+	if (!check_map(map))
+		put_map_error();
+	else
+		solve(map);
 	free(map.map);
 	return (true);
 }
