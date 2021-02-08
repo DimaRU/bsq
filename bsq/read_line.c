@@ -18,17 +18,18 @@
 char	*ft_realloc(char *memory, size_t old_size, size_t size)
 {
 	char *new_alloc;
-	char *ptr;
+	char *dst;
+	char *src;
 
 	new_alloc = malloc(size);
-	if (new_alloc == NULL)
+	if (new_alloc != NULL)
 	{
-		free(memory);
-		return (NULL);
+		dst = new_alloc;
+		src = memory;
+		while (old_size-- > 0)
+			*dst++ = *src++;
 	}
-	ptr = new_alloc;
-	while (old_size-- > 0)
-		*ptr++ = *memory++;
+	free(memory);
 	return (new_alloc);
 }
 
@@ -49,13 +50,13 @@ char	*read_line(int fileid)
 	i = -1;
 	while (line != NULL)
 	{
-		while (++i < alloc_size)
+		while (i < alloc_size)
 		{
 			if (read(fileid, line + i, 1) != 1)
 				return (return_clear(line));
-			if (line[i] == '\n')
+			if (line[i++] == '\n')
 			{
-				line[i] = '\0';
+				line[--i] = '\0';
 				return (line);
 			}
 		}
