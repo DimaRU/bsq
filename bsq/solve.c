@@ -13,7 +13,7 @@
 #include "bsq.h"
 #include "ft_tools.h"
 
-bool	check_map(t_map map)
+bool		check_map(t_map map)
 {
 	int i;
 
@@ -26,7 +26,7 @@ bool	check_map(t_map map)
 	return (true);
 }
 
-int		is_obstacle(t_map map, int row, int col)
+int			is_obstacle(t_map map, int row, int col)
 {
 	int offset;
 
@@ -34,7 +34,57 @@ int		is_obstacle(t_map map, int row, int col)
 	return (map.map[offset] == map.obstacle);
 }
 
-void	solve(t_map map)
+int			find_max_square(t_map map, int start_row, int start_col)
 {
+	int row;
+	int col;
+	int dim;
 
+	dim = 0;
+	while (start_row + dim < map.rows && start_col + dim < map.cols)
+	{
+		col = start_col - 1;
+		while (++col <= start_col + dim)
+		{
+			if (is_obstacle(map, start_row + dim, col))
+				return (dim);
+		}
+		row = start_row - 1;
+		while (++row <= start_row + dim)
+		{
+			if (is_obstacle(map, row, start_col + dim))
+				return (dim);
+		}
+		dim++;
+	}
+	return (dim);
+}
+
+t_solution	solve(t_map map)
+{
+	t_solution	solution;
+	int			row;
+	int			col;
+	int			dim;
+
+	solution.dimension = 0;
+	row = -1;
+	while (++row < map.rows)
+	{
+		if (row + solution.dimension >= map.rows)
+			return (solution);
+		col = -1;
+		while (++col < map.cols)
+		{
+			if (col + solution.dimension >= map.cols)
+				break ;
+			if ((dim = find_max_square(map, row, col)) > solution.dimension)
+			{
+				solution.dimension = dim;
+				solution.row = row;
+				solution.col = col;
+			}
+		}
+	}
+	return (solution);
 }

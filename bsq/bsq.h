@@ -33,7 +33,7 @@ typedef struct	s_solution
 
 void			put_map_error(void);
 bool			read_map(t_map *map, int fileid);
-void			solve(t_map map);
 bool			check_map(t_map map);
+t_solution		solve(t_map map);
 
 #endif

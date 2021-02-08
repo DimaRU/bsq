@@ -18,7 +18,8 @@
 
 bool	process_file(int fileid)
 {
-	t_map map;
+	t_map		map;
+	t_solution	solution;
 
 	if (!read_map(&map, fileid))
 	{
@@ -28,7 +29,9 @@ bool	process_file(int fileid)
 	if (!check_map(map))
 		put_map_error();
 	else
-		solve(map);
+	{
+		solution = solve(map);
+	}
 	free(map.map);
 	return (true);
 }
