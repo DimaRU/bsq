@@ -29,6 +29,7 @@ typedef struct	s_solution
 	int			col;
 	int			row;
 	int			dimension;
+	int			next_col;
 }				t_solution;
 
 void			put_map_error(void);
