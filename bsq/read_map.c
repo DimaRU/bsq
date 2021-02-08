@@ -77,7 +77,7 @@ bool	read_map(t_map *map, int fileid)
 	param_line[count - 3] = '\0';
 	map->rows = ft_atoi(param_line);
 	free(param_line);
-	if (map->rows == -1 || map->empty == map->obstacle ||
+	if (map->rows < 1 || map->empty == map->obstacle ||
 			map->empty == map->full || map->obstacle == map->full)
 		return (false);
 	return (load_map(map, fileid));
