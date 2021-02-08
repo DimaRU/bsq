@@ -15,51 +15,6 @@
 #include "bsq.h"
 #include "ft_tools.h"
 
-char	*ft_realloc(char *memory, size_t old_size, size_t size)
-{
-	char *new_alloc;
-	char *ptr;
-
-	new_alloc = malloc(size);
-	if (new_alloc == NULL)
-	{
-		free(memory);
-		return (NULL);
-	}
-	ptr = new_alloc;
-	while (old_size-- > 0)
-		*ptr++ = *memory++;
-	return (new_alloc);
-}
-
-char	*read_line(int fileid)
-{
-	size_t	alloc_size;
-	size_t	i;
-	char	*line;
-
-	alloc_size = 64;
-	if ((line = malloc(alloc_size)) == NULL)
-		return (NULL);
-	i = -1;
-	while (true)
-	{
-		while (++i < alloc_size)
-		{
-			read(fileid, line + i, 1);
-			if (line[i] == '\n')
-			{
-				line[i] = '\0';
-				return (line);
-			}
-		}
-		line = ft_realloc(line, alloc_size, alloc_size * 2);
-		alloc_size *= 2;
-		if (line == NULL)
-			return (NULL);
-	}
-}
-
 int		ft_atoi(char *str)
 {
 	int number;

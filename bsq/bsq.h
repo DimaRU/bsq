@@ -36,5 +36,6 @@ bool			read_map(t_map *map, int fileid);
 bool			check_map(t_map map);
 t_solution		solve(t_map map);
 void			print_solution(t_solution solution, t_map map);
+char			*read_line(int fileid);
 
 #endif
