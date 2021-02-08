@@ -31,6 +31,10 @@ bool	process_file(int fileid)
 	else
 	{
 		solution = solve(map);
+		if (solution.dimension != 0)
+			print_solution(solution, map);
+		else
+			put_map_error();
 	}
 	free(map.map);
 	return (true);
