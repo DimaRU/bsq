@@ -17,6 +17,7 @@ SRC  =	main.c \
 		put_map_error.c \
 		read_map.c \
 		solve.c \
+		read_line.c \
 		ft_putstr.c \
 		ft_strlen.c
 

@@ -52,7 +52,7 @@ char	*read_line(int fileid)
 		while (++i < alloc_size)
 		{
 			if (read(fileid, line + i, 1) != 1)
-				return_clear(line);
+				return (return_clear(line));
 			if (line[i] == '\n')
 			{
 				line[i] = '\0';
