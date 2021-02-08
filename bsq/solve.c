@@ -34,7 +34,17 @@ int			is_obstacle(t_map map, int row, int col)
 	return (map.map[offset] == map.obstacle);
 }
 
-int			find_max_square(t_map map, int start_row, int start_col)
+t_solution	create_solution(int row, int col, int dimension)
+{
+	t_solution s;
+
+	s.row = row;
+	s.col = col;
+	s.dimension = dimension;
+	return (s);
+}
+
+t_solution	find_max_square(t_map map, int start_row, int start_col)
 {
 	int row;
 	int col;
@@ -47,44 +57,41 @@ int			find_max_square(t_map map, int start_row, int start_col)
 		while (++col <= start_col + dim)
 		{
 			if (is_obstacle(map, start_row + dim, col))
-				return (dim);
+				return (create_solution(start_row, start_col, dim));
 		}
 		row = start_row - 1;
 		while (++row <= start_row + dim)
 		{
 			if (is_obstacle(map, row, start_col + dim))
-				return (dim);
+				return (create_solution(start_row, start_col, dim));
 		}
 		dim++;
 	}
-	return (dim);
+	return (create_solution(start_row, start_col, dim));
 }
 
 t_solution	solve(t_map map)
 {
-	t_solution	solution;
+	t_solution	best;
+	t_solution	current;
 	int			row;
 	int			col;
-	int			dim;
 
-	solution.dimension = 0;
+	best.dimension = 0;
 	row = -1;
 	while (++row < map.rows)
 	{
-		if (row + solution.dimension >= map.rows)
-			return (solution);
+		if (row + best.dimension >= map.rows)
+			return (best);
 		col = -1;
 		while (++col < map.cols)
 		{
-			if (col + solution.dimension >= map.cols)
+			if (col + best.dimension >= map.cols)
 				break ;
-			if ((dim = find_max_square(map, row, col)) > solution.dimension)
-			{
-				solution.dimension = dim;
-				solution.row = row;
-				solution.col = col;
-			}
+			current = find_max_square(map, row, col);
+			if (current.dimension > best.dimension)
+				best = current;
 		}
 	}
-	return (solution);
+	return (best);
 }
