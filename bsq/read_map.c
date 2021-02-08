@@ -33,13 +33,13 @@ int		ft_atoi(char *str)
 bool	load_map(t_map *map, int fileid)
 {
 	char	*first_line;
-	int		i;
+	long	i;
 	int		len;
 
 	if ((first_line = read_line(fileid)) == NULL)
 		return (false);
 	map->cols = ft_strlen(first_line);
-	if ((map->map = malloc(map->rows * map->cols + 1)) == NULL)
+	if ((map->map = malloc((long)map->rows * map->cols + 1)) == NULL)
 		return (false);
 	i = -1;
 	while (++i < map->cols)
@@ -48,7 +48,7 @@ bool	load_map(t_map *map, int fileid)
 	i = 0;
 	while (++i < map->rows)
 	{
-		len = (int)read(fileid, &map->map[map->cols * i], map->cols + 1);
+		len = (int)read(fileid, map->map + map->cols * i, map->cols + 1);
 		if (len != map->cols + 1 || map->map[map->cols * (i + 1)] != '\n')
 		{
 			free(map->map);
