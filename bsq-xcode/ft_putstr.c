@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssantiag <ssantiag@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 16:58:15 by ssantiag          #+#    #+#             */
-/*   Updated: 2021/02/06 16:58:15 by ssantiag         ###   ########.fr       */
+/*   Created: 2021/01/22 01:39:13 by ssantiag          #+#    #+#             */
+/*   Updated: 2021/01/22 01:39:13 by ssantiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
-# include <stdbool.h>
+#include <unistd.h>
 
-typedef struct	s_map_params
+void	ft_putstr(char *str)
 {
-	int			cols;
-	int			rows;
-	char		empty;
-	char		obstacle;
-	char		full;
-	char		*map;
-}				t_map_params;
+	char *end_pointer;
 
-typedef struct	s_solution
-{
-	int			col;
-	int			row;
-	int			dimension;
-}				t_solution;
-
-void			put_map_error(void);
-
-#endif
+	if (str == NULL)
+		return ;
+	if (*str == '\0')
+		return ;
+	end_pointer = str;
+	while (*end_pointer != '\0')
+		end_pointer++;
+	write(1, str, end_pointer - str);
+}

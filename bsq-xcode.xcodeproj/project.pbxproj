@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ABA681A25D11D43002B12AF /* put_map_error.c in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA681925D11D43002B12AF /* put_map_error.c */; };
+		0ABA681D25D11D78002B12AF /* ft_putstr.c in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA681C25D11D78002B12AF /* ft_putstr.c */; };
+		0ABA682025D11D80002B12AF /* ft_strcmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA681F25D11D80002B12AF /* ft_strcmp.c */; };
 		C7C1115225CED7C700760B92 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C7C1115125CED7C700760B92 /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +26,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0ABA681925D11D43002B12AF /* put_map_error.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = put_map_error.c; sourceTree = "<group>"; };
+		0ABA681C25D11D78002B12AF /* ft_putstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_putstr.c; sourceTree = "<group>"; };
+		0ABA681F25D11D80002B12AF /* ft_strcmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_strcmp.c; sourceTree = "<group>"; };
+		0ABA682225D11F7A002B12AF /* ft_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ft_tools.h; sourceTree = "<group>"; };
 		C7C1114E25CED7C700760B92 /* bsq-xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bsq-xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C1115125CED7C700760B92 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C7C1115825CED7F400760B92 /* bsq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bsq.h; sourceTree = "<group>"; };
@@ -62,7 +69,11 @@
 			isa = PBXGroup;
 			children = (
 				C7C1115125CED7C700760B92 /* main.c */,
+				0ABA681925D11D43002B12AF /* put_map_error.c */,
+				0ABA681C25D11D78002B12AF /* ft_putstr.c */,
+				0ABA681F25D11D80002B12AF /* ft_strcmp.c */,
 				C7C1115825CED7F400760B92 /* bsq.h */,
+				0ABA682225D11F7A002B12AF /* ft_tools.h */,
 			);
 			path = "bsq-xcode";
 			sourceTree = "<group>";
@@ -94,7 +105,7 @@
 		C7C1114625CED7C700760B92 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Sheri Santiago";
 				TargetAttributes = {
 					C7C1114D25CED7C700760B92 = {
@@ -143,6 +154,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7C1115225CED7C700760B92 /* main.c in Sources */,
+				0ABA681D25D11D78002B12AF /* ft_putstr.c in Sources */,
+				0ABA682025D11D80002B12AF /* ft_strcmp.c in Sources */,
+				0ABA681A25D11D43002B12AF /* put_map_error.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +189,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -237,6 +252,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

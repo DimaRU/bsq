@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   ft_tools.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssantiag <ssantiag@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 16:58:15 by ssantiag          #+#    #+#             */
-/*   Updated: 2021/02/06 16:58:15 by ssantiag         ###   ########.fr       */
+/*   Created: 2021/02/08 10:27:58 by ssantiag          #+#    #+#             */
+/*   Updated: 2021/02/08 10:27:58 by ssantiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
-# include <stdbool.h>
+#ifndef FT_TOOLS_H
+# define FT_TOOLS_H
 
-typedef struct	s_map_params
-{
-	int			cols;
-	int			rows;
-	char		empty;
-	char		obstacle;
-	char		full;
-	char		*map;
-}				t_map_params;
-
-typedef struct	s_solution
-{
-	int			col;
-	int			row;
-	int			dimension;
-}				t_solution;
-
-void			put_map_error(void);
+void			ft_putstr(char *str);
+int				ft_strcmp(char *s1, char *s2);
 
 #endif

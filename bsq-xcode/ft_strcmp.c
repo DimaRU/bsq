@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssantiag <ssantiag@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 16:58:15 by ssantiag          #+#    #+#             */
-/*   Updated: 2021/02/06 16:58:15 by ssantiag         ###   ########.fr       */
+/*   Created: 2021/01/27 22:58:10 by ssantiag          #+#    #+#             */
+/*   Updated: 2021/01/27 22:58:10 by ssantiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
-# include <stdbool.h>
-
-typedef struct	s_map_params
+int	ft_strcmp(char *s1, char *s2)
 {
-	int			cols;
-	int			rows;
-	char		empty;
-	char		obstacle;
-	char		full;
-	char		*map;
-}				t_map_params;
-
-typedef struct	s_solution
-{
-	int			col;
-	int			row;
-	int			dimension;
-}				t_solution;
-
-void			put_map_error(void);
-
-#endif
+	while (*s1 == *s2 && *s1 != '\0')
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}

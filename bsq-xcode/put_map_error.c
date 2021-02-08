@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssantiag <ssantiag@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 16:58:15 by ssantiag          #+#    #+#             */
-/*   Updated: 2021/02/06 16:58:15 by ssantiag         ###   ########.fr       */
+/*   Created: 2021/02/08 10:18:29 by ssantiag          #+#    #+#             */
+/*   Updated: 2021/02/08 10:18:29 by ssantiag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
-# include <stdbool.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include "bsq.h"
+#include "ft_tools.h"
 
-typedef struct	s_map_params
+void	put_map_error(void)
 {
-	int			cols;
-	int			rows;
-	char		empty;
-	char		obstacle;
-	char		full;
-	char		*map;
-}				t_map_params;
-
-typedef struct	s_solution
-{
-	int			col;
-	int			row;
-	int			dimension;
-}				t_solution;
-
-void			put_map_error(void);
-
-#endif
+	ft_putstr("map error\n");
+}
