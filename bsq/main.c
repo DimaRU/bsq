@@ -18,7 +18,13 @@
 
 bool	process_file(int fileid)
 {
-	return (false);
+	t_map map;
+
+	if (!read_map(&map, fileid))
+		return (false);
+	solve(map);
+	free(map.map);
+	return (true);
 }
 
 int		main(int argc, char *argv[])
