@@ -34,6 +34,7 @@
 		0A193E9B25D1305E007A42C9 /* ft_strlen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_strlen.c; sourceTree = "<group>"; };
 		0A193E9E25D14771007A42C9 /* print_solution.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = print_solution.c; sourceTree = "<group>"; };
 		0A193EA125D14A68007A42C9 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		0A193EA725D14C28007A42C9 /* example.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = example.txt; sourceTree = "<group>"; };
 		0ABA681925D11D43002B12AF /* put_map_error.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = put_map_error.c; sourceTree = "<group>"; };
 		0ABA681C25D11D78002B12AF /* ft_putstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_putstr.c; sourceTree = "<group>"; };
 		0ABA682225D11F7A002B12AF /* ft_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ft_tools.h; sourceTree = "<group>"; };
@@ -53,9 +54,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A193EA625D14BF3007A42C9 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				0A193EA725D14C28007A42C9 /* example.txt */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		C7C1114525CED7C700760B92 = {
 			isa = PBXGroup;
 			children = (
+				0A193EA625D14BF3007A42C9 /* test */,
 				C7C1115025CED7C700760B92 /* bsq */,
 				C7C1114F25CED7C700760B92 /* Products */,
 			);
