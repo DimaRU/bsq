@@ -45,7 +45,7 @@ bool	load_map(t_map *map, int fileid)
 	if ((first_line = read_line(fileid)) == NULL)
 		return (false);
 	map->cols = ft_strlen(first_line);
-	if ((map->map = malloc((long)map->rows * map->cols + 1)) == NULL)
+	if ((map->map = malloc(map->rows * map->cols + 1)) == NULL)
 		return (cleanup(first_line));
 	i = -1;
 	while (++i < map->cols)

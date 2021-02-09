@@ -16,8 +16,8 @@
 
 typedef struct	s_map
 {
-	int			cols;
-	int			rows;
+	long		cols;
+	long		rows;
 	char		empty;
 	char		obstacle;
 	char		full;

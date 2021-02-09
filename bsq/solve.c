@@ -18,20 +18,12 @@ bool		check_map(t_map map)
 	long i;
 
 	i = -1;
-	while (++i < (long)map.cols * map.rows)
+	while (++i < map.cols * map.rows)
 	{
 		if (!(map.map[i] == map.empty || map.map[i] == map.obstacle))
 			return (false);
 	}
 	return (true);
-}
-
-int			is_obstacle(t_map map, int row, int col)
-{
-	long offset;
-
-	offset = (long)row * map.cols + col;
-	return (map.map[offset] == map.obstacle);
 }
 
 t_solution	make_solution(int row, int col, int dimension, int next_col)
@@ -57,19 +49,19 @@ t_solution	find_max_square(t_map map, int start_row, int start_col)
 		col = start_col - 1;
 		while (++col <= start_col + dim)
 		{
-			if (is_obstacle(map, start_row + dim, col))
+			if (map.map[(start_row + dim) * map.cols + col] == map.obstacle)
 				return (make_solution(start_row, start_col, dim, col + 1));
 		}
 		row = start_row - 1;
 		while (++row <= start_row + dim)
 		{
-			if (is_obstacle(map, row, start_col + dim))
+			if (map.map[row * map.cols + start_col + dim] == map.obstacle)
 				return (make_solution(start_row, start_col, dim,
 									start_col + dim + 1));
 		}
 		dim++;
 	}
-	return (make_solution(start_row, start_col, dim, map.cols));
+	return (make_solution(start_row, start_col, dim, (int)map.cols));
 }
 
 t_solution	solve(t_map map)
