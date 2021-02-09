@@ -28,9 +28,9 @@ bool		check_map(t_map map)
 
 int			is_obstacle(t_map map, int row, int col)
 {
-	int offset;
+	long offset;
 
-	offset = row * map.cols + col;
+	offset = (long)row * map.cols + col;
 	return (map.map[offset] == map.obstacle);
 }
 
