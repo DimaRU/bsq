@@ -61,6 +61,11 @@ bool	load_map(t_map *map, int fileid)
 	return (true);
 }
 
+bool	is_print(char c)
+{
+	return (c >= ' ' && c <= '\x7e');
+}
+
 bool	read_map(t_map *map, int fileid)
 {
 	char	*param_line;
@@ -81,7 +86,8 @@ bool	read_map(t_map *map, int fileid)
 	map->rows = ft_atoi(param_line);
 	free(param_line);
 	if (map->rows < 1 || map->empty == map->obstacle ||
-			map->empty == map->full || map->obstacle == map->full)
+	map->empty == map->full || map->obstacle == map->full ||
+	!(is_print(map->empty) && is_print(map->full) && is_print(map->obstacle)))
 		return (false);
 	return (load_map(map, fileid));
 }
