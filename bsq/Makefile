@@ -32,7 +32,7 @@ all:	${NAME}
 clean:
 		rm -f ${OBJ}
 fclean:	clean
-		rm ${NAME}
+		rm -f ${NAME}
 re:		fclean all
 
 .PHONY : clean all fclean re
