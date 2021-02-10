@@ -27,54 +27,66 @@ void		store(t_solution *solution, int row, int col, int dimension)
 	solution->dimension = dimension;
 }
 
-void		solve_rest(t_map map, t_solution *solution)
+bool		solve_rest(t_map map, t_solution *solution, int row)
 {
-	int		row;
 	int		col;
 	char	*m;
 	int		*prev;
 	int		*curr;
 
-	row = 0;
-	while (++row < map.rows)
-	{
-		prev = row % 2 ? map.even : map.odd;
-		curr = row % 2 ? map.odd : map.even;
-		m = map.map + row * (map.cols + 1);
-		col = 0;
-		curr[col] = *m++ == map.empty ? 1 : 0;
-		if (curr[col] == 1 && solution->dimension == 0)
-			store(solution, row, col, 1);
-		while (++col < map.cols)
-		{
-			curr[col] = *m++ == map.empty ?
-				min3(curr[col - 1], prev[col], prev[col - 1]) + 1 : 0;
-			if (solution->dimension < curr[col])
-				store(solution, row, col, curr[col]);
-		}
-		m++;
-	}
-}
-
-void		solve_first(t_map map, t_solution *solution)
-{
-	int		col;
-
+	prev = row % 2 ? map.even : map.odd;
+	curr = row % 2 ? map.odd : map.even;
+	m = map.map + row * (map.cols + 1);
 	col = -1;
 	while (++col < map.cols)
 	{
-		map.even[col] = map.map[col] == map.empty ? 1 : 0;
+		if (*m != map.empty && *m != map.obstacle)
+			return (false);
+		if (col == 0)
+			curr[col] = *m++ == map.empty ? 1 : 0;
+		else
+			curr[col] = *m++ == map.empty ?
+				min3(curr[col - 1], prev[col], prev[col - 1]) + 1 : 0;
+		if (solution->dimension < curr[col])
+			store(solution, row, col, curr[col]);
+	}
+	return (*m == '\n');
+}
+
+bool		solve_first(t_map map, t_solution *solution)
+{
+	int		col;
+	char	*m;
+
+	m = map.map;
+	col = -1;
+	while (++col < map.cols)
+	{
+		if (*m != map.empty && *m != map.obstacle)
+			return (false);
+		map.even[col] = *m++ == map.empty ? 1 : 0;
 		if (map.even[col] == 1 && solution->dimension == 0)
 			store(solution, 0, col, 1);
 	}
+	return (*m == '\n');
 }
 
 t_solution	solve(t_map map)
 {
 	t_solution	solution;
+	int			row;
 
 	solution.dimension = 0;
-	solve_first(map, &solution);
-	solve_rest(map, &solution);
+	if (!solve_first(map, &solution))
+		return (solution);
+	row = 0;
+	while (++row < map.rows)
+	{
+		if (!solve_rest(map, &solution, row))
+		{
+			store(&solution, 0, 0, 0);
+			break ;
+		}
+	}
 	return (solution);
 }

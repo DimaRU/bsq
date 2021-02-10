@@ -16,29 +16,6 @@
 #include "bsq.h"
 #include "ft_tools.h"
 
-bool	check_map(t_map map)
-{
-	int		row;
-	int		col;
-	char	*ptr;
-
-	ptr = map.map;
-	row = -1;
-	while (++row < map.rows)
-	{
-		col = -1;
-		while (++col < map.cols)
-		{
-			if (!(*ptr == map.empty || *ptr == map.obstacle))
-				return (false);
-			ptr++;
-		}
-		if (*ptr++ != '\n')
-			return (false);
-	}
-	return (true);
-}
-
 bool	process_file(int fileid)
 {
 	t_map		map;
@@ -49,16 +26,11 @@ bool	process_file(int fileid)
 		put_map_error();
 		return (false);
 	}
-	if (!check_map(map))
-		put_map_error();
+	solution = solve(map);
+	if (solution.dimension != 0)
+		print_solution(solution, map);
 	else
-	{
-		solution = solve(map);
-		if (solution.dimension != 0)
-			print_solution(solution, map);
-		else
-			put_map_error();
-	}
+		put_map_error();
 	free(map.map);
 	free(map.even);
 	free(map.odd);
