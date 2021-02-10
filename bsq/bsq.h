@@ -40,5 +40,7 @@ t_solution		solve(t_map map);
 void			print_solution(t_solution solution, t_map map);
 char			*read_line(int fileid);
 bool			is_print(char c);
+bool			bitpack(t_map map, char *line, int row);
+void			bitunpack(t_map map, char *line, int row);
 
 #endif

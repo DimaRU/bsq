@@ -14,6 +14,7 @@
 		0A193EAA25D16757007A42C9 /* read_line.c in Sources */ = {isa = PBXBuildFile; fileRef = 0A193EA925D16757007A42C9 /* read_line.c */; };
 		0ABA681A25D11D43002B12AF /* put_map_error.c in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA681925D11D43002B12AF /* put_map_error.c */; };
 		0ABA681D25D11D78002B12AF /* ft_putstr.c in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA681C25D11D78002B12AF /* ft_putstr.c */; };
+		C77A495B25D44CFE009A5D5D /* bitpack.c in Sources */ = {isa = PBXBuildFile; fileRef = C77A495A25D44CFE009A5D5D /* bitpack.c */; };
 		C7C1115225CED7C700760B92 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C7C1115125CED7C700760B92 /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		0ABA681925D11D43002B12AF /* put_map_error.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = put_map_error.c; sourceTree = "<group>"; };
 		0ABA681C25D11D78002B12AF /* ft_putstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_putstr.c; sourceTree = "<group>"; };
 		0ABA682225D11F7A002B12AF /* ft_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ft_tools.h; sourceTree = "<group>"; };
+		C77A495A25D44CFE009A5D5D /* bitpack.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bitpack.c; sourceTree = "<group>"; };
 		C7C1114E25CED7C700760B92 /* bsq */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bsq; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C1115125CED7C700760B92 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C7C1115825CED7F400760B92 /* bsq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bsq.h; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				C7C1115125CED7C700760B92 /* main.c */,
 				0A193E9825D12B13007A42C9 /* solve.c */,
+				C77A495A25D44CFE009A5D5D /* bitpack.c */,
 				0A193E9E25D14771007A42C9 /* print_solution.c */,
 				0A193E9525D12AA7007A42C9 /* read_map.c */,
 				0A193EA925D16757007A42C9 /* read_line.c */,
@@ -179,6 +182,7 @@
 			files = (
 				0A193E9C25D1305E007A42C9 /* ft_strlen.c in Sources */,
 				0A193E9625D12AA7007A42C9 /* read_map.c in Sources */,
+				C77A495B25D44CFE009A5D5D /* bitpack.c in Sources */,
 				0A193E9F25D14771007A42C9 /* print_solution.c in Sources */,
 				C7C1115225CED7C700760B92 /* main.c in Sources */,
 				0ABA681D25D11D78002B12AF /* ft_putstr.c in Sources */,

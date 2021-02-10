@@ -13,25 +13,28 @@
 #include <unistd.h>
 #include "bsq.h"
 #include "ft_tools.h"
+#include <stdio.h>
 
 void	print_solution(t_solution solution, t_map map)
 {
 	int		row;
 	int		col;
-	long	offset;
+	char	*line;
 
+	printf("%d %d %d\n", solution.row, solution.col, solution.dimension);
+	line = (char *)map.even;
 	row = -1;
 	while (++row < map.rows)
 	{
+		bitunpack(map, line, row);
 		if (row > solution.row - solution.dimension && row <= solution.row)
 		{
 			col = solution.col - solution.dimension;
 			while (++col <= solution.col)
 			{
-				offset = row * (map.cols + 1) + col;
-				map.map[offset] = map.full;
+				line[col] = map.full;
 			}
 		}
-		write(STDOUT_FILENO, map.map + row * (map.cols + 1), map.cols + 1);
+		write(STDOUT_FILENO, line, map.cols + 1);
 	}
 }

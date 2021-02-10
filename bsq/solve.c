@@ -20,20 +20,20 @@ void		store(t_solution *solution, int row, int col, int dimension)
 	solution->dimension = dimension;
 }
 
-bool		solve_rest(t_map map, t_solution *solution, int row, char *m)
+void		solve_rest(t_map map, t_solution *solution, int row)
 {
 	int		col;
 	int		*prev;
 	int		*curr;
+	long	off;
 
 	prev = row % 2 ? map.even : map.odd;
 	curr = row % 2 ? map.odd : map.even;
 	col = -1;
 	while (++col < map.cols)
 	{
-		if (*m != map.empty && *m != map.obstacle)
-			return (false);
-		if (*m++ != map.empty)
+		off = row * map.cols + col;
+		if (map.map[off >> 3] & 1 << (off & 0x7))
 			curr[col] = 0;
 		else if (col == 0)
 			curr[col] = 1;
@@ -46,25 +46,21 @@ bool		solve_rest(t_map map, t_solution *solution, int row, char *m)
 		if (solution->dimension < curr[col])
 			store(solution, row, col, curr[col]);
 	}
-	return (*m == '\n');
 }
 
-bool		solve_first(t_map map, t_solution *solution)
+void		solve_first(t_map map, t_solution *solution)
 {
 	int		col;
-	char	*m;
+	long	off;
 
-	m = map.map;
 	col = -1;
 	while (++col < map.cols)
 	{
-		if (*m != map.empty && *m != map.obstacle)
-			return (false);
-		map.even[col] = *m++ == map.empty ? 1 : 0;
+		off = map.cols + col;
+		map.even[col] = (map.map[off >> 3] & (1 << (off & 0x7))) ? 1 : 0;
 		if (map.even[col] == 1 && solution->dimension == 0)
 			store(solution, 0, col, 1);
 	}
-	return (*m == '\n');
 }
 
 t_solution	solve(t_map map)
@@ -73,16 +69,9 @@ t_solution	solve(t_map map)
 	int			row;
 
 	solution.dimension = 0;
-	if (!solve_first(map, &solution))
-		return (solution);
+	solve_first(map, &solution);
 	row = 0;
 	while (++row < map.rows)
-	{
-		if (!solve_rest(map, &solution, row, map.map + row * (map.cols + 1)))
-		{
-			store(&solution, 0, 0, 0);
-			break ;
-		}
-	}
+		solve_rest(map, &solution, row);
 	return (solution);
 }

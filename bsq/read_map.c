@@ -43,35 +43,35 @@ bool	prepare_map(t_map *map)
 	return (true);
 }
 
-bool	cleanup(char *memory)
+bool	cleanup(char *mem1, char *mem2)
 {
-	free(memory);
+	free(mem1);
+	free(mem2);
 	return (false);
 }
 
 bool	load_map(t_map *map, int fileid)
 {
 	char	*first_line;
-	long	i;
+	int		row;
 	long	len;
 
 	if ((first_line = read_line(fileid)) == NULL)
 		return (false);
 	map->cols = ft_strlen(first_line);
-	if ((map->map = malloc(map->rows * (map->cols + 1))) == NULL)
-		return (cleanup(first_line));
-	i = -1;
-	while (++i < map->cols)
-		map->map[i] = first_line[i];
-	map->map[i] = '\n';
-	free(first_line);
-	i = 0;
-	while (++i < map->rows)
+	if ((map->map = malloc((map->rows * map->cols + 8) >> 3)) == NULL)
+		return (cleanup(first_line, NULL));
+	first_line[map->cols] = '\n';
+	if (!bitpack(*map, first_line, 0))
+		return (cleanup(first_line, map->map));
+	row = 0;
+	while (++row < map->rows)
 	{
-		len = read(fileid, map->map + i * (map->cols + 1), map->cols + 1);
-		if (len != map->cols + 1)
-			return (cleanup(map->map));
+		len = read(fileid, first_line, map->cols + 1);
+		if (len != map->cols + 1 || !bitpack(*map, first_line, row))
+			return (cleanup(first_line, map->map));
 	}
+	free(first_line);
 	return (prepare_map(map));
 }
 
