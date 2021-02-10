@@ -21,7 +21,7 @@ void	print_solution(t_solution solution, t_map map)
 	long	offset;
 
 	row = -1;
-	while (++row <= map.rows)
+	while (++row < map.rows)
 	{
 		if (row > solution.row - solution.dimension && row <= solution.row)
 		{
