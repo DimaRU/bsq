@@ -13,13 +13,6 @@
 #include "bsq.h"
 #include "ft_tools.h"
 
-int			min3(int a, int b, int c)
-{
-	if (a < b && a < c)
-		return (a);
-	return ((b < c) ? b : c);
-}
-
 void		store(t_solution *solution, int row, int col, int dimension)
 {
 	solution->row = row;
@@ -27,26 +20,29 @@ void		store(t_solution *solution, int row, int col, int dimension)
 	solution->dimension = dimension;
 }
 
-bool		solve_rest(t_map map, t_solution *solution, int row)
+bool		solve_rest(t_map map, t_solution *solution, int row, char *m)
 {
 	int		col;
-	char	*m;
 	int		*prev;
 	int		*curr;
 
 	prev = row % 2 ? map.even : map.odd;
 	curr = row % 2 ? map.odd : map.even;
-	m = map.map + row * (map.cols + 1);
 	col = -1;
 	while (++col < map.cols)
 	{
 		if (*m != map.empty && *m != map.obstacle)
 			return (false);
-		if (col == 0)
-			curr[col] = *m++ == map.empty ? 1 : 0;
+		if (*m++ != map.empty)
+			curr[col] = 0;
+		else if (col == 0)
+			curr[col] = 1;
 		else
-			curr[col] = *m++ == map.empty ?
-				min3(curr[col - 1], prev[col], prev[col - 1]) + 1 : 0;
+		{
+			curr[col] = curr[col - 1] < prev[col] ? curr[col - 1] : prev[col];
+			curr[col] = curr[col] < prev[col - 1] ? curr[col] : prev[col - 1];
+			curr[col]++;
+		}
 		if (solution->dimension < curr[col])
 			store(solution, row, col, curr[col]);
 	}
@@ -82,7 +78,7 @@ t_solution	solve(t_map map)
 	row = 0;
 	while (++row < map.rows)
 	{
-		if (!solve_rest(map, &solution, row))
+		if (!solve_rest(map, &solution, row, map.map + row * (map.cols + 1)))
 		{
 			store(&solution, 0, 0, 0);
 			break ;
