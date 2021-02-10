@@ -20,11 +20,11 @@ void	print_solution(t_solution solution, t_map map)
 	int		col;
 	long	offset;
 
-	row = solution.row - 1;
-	while (++row < solution.row + solution.dimension)
+	row = solution.row - solution.dimension;
+	while (++row <= solution.row)
 	{
-		col = solution.col - 1;
-		while (++col < solution.col + solution.dimension)
+		col = solution.col - solution.dimension;
+		while (++col <= solution.col)
 		{
 			offset = row * map.cols + col;
 			map.map[offset] = map.full;

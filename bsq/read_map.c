@@ -40,23 +40,26 @@ bool	load_map(t_map *map, int fileid)
 {
 	char	*first_line;
 	long	i;
-	int		len;
+	long	len;
 
 	if ((first_line = read_line(fileid)) == NULL)
 		return (false);
 	map->cols = ft_strlen(first_line);
-	if ((map->map = malloc(map->rows * map->cols + 1)) == NULL)
-		return (cleanup(first_line));
+	if ((map->map = malloc(map->rows * (map->cols + 1))) == NULL)
+	{
+		free(first_line);
+		return (false);
+	}
 	i = -1;
 	while (++i < map->cols)
 		map->map[i] = first_line[i];
+	map->map[i] = '\n';
 	free(first_line);
-	i = 0;
-	while (++i < map->rows)
+	len = read(fileid, map->map + map->cols + 1, (map->rows - 1) * map->cols);
+	if (len != (map->rows - 1) * map->cols)
 	{
-		len = (int)read(fileid, map->map + map->cols * i, map->cols + 1);
-		if (len != map->cols + 1 || map->map[map->cols * (i + 1)] != '\n')
-			return (cleanup(map->map));
+		free(map->map);
+		return (false);
 	}
 	return (true);
 }

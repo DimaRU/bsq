@@ -12,6 +12,7 @@
 
 #include "bsq.h"
 #include "ft_tools.h"
+#include <stdlib.h>
 
 bool		check_map(t_map map)
 {
@@ -26,67 +27,73 @@ bool		check_map(t_map map)
 	return (true);
 }
 
-t_solution	make_solution(int row, int col, int dimension, int next_col)
+t_solution	make_solution(int row, int col, int dimension)
 {
 	t_solution s;
 
 	s.row = row;
 	s.col = col;
 	s.dimension = dimension;
-	s.next_col = next_col;
 	return (s);
 }
 
-t_solution	find_max_square(t_map map, int start_row, int start_col)
+int			min3(int a, int b, int c)
 {
-	int row;
-	int col;
-	int dim;
+	if (a < b && a < c)
+		return (a);
+	return ((b < c) ? b : c);
+}
 
-	dim = 0;
-	while (start_row + dim < map.rows && start_col + dim < map.cols)
+t_solution	find_solution(t_map map, int *sum)
+{
+	t_solution	solution;
+	int			row;
+	int			col;
+	long		off;
+
+	solution.dimension = sum[0];
+	row = -1;
+	while (++row < map.rows)
 	{
-		col = start_col - 1;
-		while (++col <= start_col + dim)
+		col = -1;
+		while (++col < map.cols)
 		{
-			if (map.map[(start_row + dim) * map.cols + col] == map.obstacle)
-				return (make_solution(start_row, start_col, dim, col + 1));
+			off = row * map.cols + col;
+			if (sum[off] > solution.dimension)
+			{
+				solution.dimension = sum[off];
+				solution.row = row;
+				solution.col = col;
+			}
 		}
-		row = start_row - 1;
-		while (++row <= start_row + dim)
-		{
-			if (map.map[row * map.cols + start_col + dim] == map.obstacle)
-				return (make_solution(start_row, start_col, dim,
-									start_col + dim + 1));
-		}
-		dim++;
 	}
-	return (make_solution(start_row, start_col, dim, (int)map.cols));
+	free(sum);
+	return (solution);
 }
 
 t_solution	solve(t_map map)
 {
-	t_solution	best;
-	t_solution	current;
-	int			row;
-	int			col;
+	int		*sum;
+	int		row;
+	int		col;
+	long	off;
 
-	best.dimension = 0;
-	row = -1;
+	sum = malloc(map.rows * map.cols * sizeof(int));
+	col = -1;
+	while (++col < map.cols)
+		sum[col] = map.map[col] == map.empty;
+	row = 0;
 	while (++row < map.rows)
 	{
-		if (row + best.dimension >= map.rows)
-			return (best);
+		sum[row * map.cols] = map.map[row * map.cols] == map.empty;
 		col = 0;
-		while (col < map.cols)
+		while (++col < map.cols)
 		{
-			if (col + best.dimension >= map.cols)
-				break ;
-			current = find_max_square(map, row, col);
-			if (current.dimension > best.dimension)
-				best = current;
-			col = current.next_col;
+			off = row * map.cols + col;
+			sum[off] = (map.map[off] != map.empty) ? 0 :
+			min3(sum[row * map.cols + col - 1], sum[(row - 1) * map.cols + col],
+				sum[(row - 1) * map.cols + col - 1]) + 1;
 		}
 	}
-	return (best);
+	return (find_solution(map, sum));
 }

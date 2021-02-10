@@ -88,8 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				C7C1115125CED7C700760B92 /* main.c */,
-				0A193E9E25D14771007A42C9 /* print_solution.c */,
 				0A193E9825D12B13007A42C9 /* solve.c */,
+				0A193E9E25D14771007A42C9 /* print_solution.c */,
 				0A193E9525D12AA7007A42C9 /* read_map.c */,
 				0A193EA925D16757007A42C9 /* read_line.c */,
 				0ABA681925D11D43002B12AF /* put_map_error.c */,
