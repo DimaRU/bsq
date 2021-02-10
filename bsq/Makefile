@@ -18,6 +18,7 @@ SRC  =	main.c \
 		read_map.c \
 		solve.c \
 		read_line.c \
+		bitpack.c \
 		ft_putstr_err.c \
 		ft_strlen.c
 
