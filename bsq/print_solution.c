@@ -13,7 +13,6 @@
 #include <unistd.h>
 #include "bsq.h"
 #include "ft_tools.h"
-#include <stdio.h>
 
 void	print_solution(t_solution solution, t_map map)
 {
@@ -21,7 +20,6 @@ void	print_solution(t_solution solution, t_map map)
 	int		col;
 	char	*line;
 
-	printf("%d %d %d\n", solution.row, solution.col, solution.dimension);
 	line = (char *)map.even;
 	row = -1;
 	while (++row < map.rows)

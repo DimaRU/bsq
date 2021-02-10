@@ -57,7 +57,7 @@ void		solve_first(t_map map, t_solution *solution)
 	while (++col < map.cols)
 	{
 		off = map.cols + col;
-		map.even[col] = (map.map[off >> 3] & (1 << (off & 0x7))) ? 1 : 0;
+		map.even[col] = (map.map[off >> 3] & (1 << (off & 0x7))) ? 0 : 1;
 		if (map.even[col] == 1 && solution->dimension == 0)
 			store(solution, 0, col, 1);
 	}
