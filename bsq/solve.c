@@ -12,30 +12,6 @@
 
 #include "bsq.h"
 #include "ft_tools.h"
-#include <stdlib.h>
-
-bool		check_map(t_map map)
-{
-	long i;
-
-	i = -1;
-	while (++i < map.cols * map.rows)
-	{
-		if (!(map.map[i] == map.empty || map.map[i] == map.obstacle))
-			return (false);
-	}
-	return (true);
-}
-
-t_solution	make_solution(int row, int col, int dimension)
-{
-	t_solution s;
-
-	s.row = row;
-	s.col = col;
-	s.dimension = dimension;
-	return (s);
-}
 
 int			min3(int a, int b, int c)
 {
@@ -44,56 +20,61 @@ int			min3(int a, int b, int c)
 	return ((b < c) ? b : c);
 }
 
-t_solution	find_solution(t_map map, int *sum)
+void		store(t_solution *solution, int row, int col, int dimension)
 {
-	t_solution	solution;
-	int			row;
-	int			col;
-	long		off;
+	solution->row = row;
+	solution->col = col;
+	solution->dimension = dimension;
+}
 
-	solution.dimension = sum[0];
-	row = -1;
+void		solve_rest(t_map map, t_solution *solution)
+{
+	int		row;
+	int		col;
+	char	*m;
+	int		*prev;
+	int		*curr;
+
+	row = 0;
 	while (++row < map.rows)
 	{
-		col = -1;
+		prev = row % 2 ? map.even : map.odd;
+		curr = row % 2 ? map.odd : map.even;
+		m = map.map + row * (map.cols + 1);
+		col = 0;
+		curr[col] = *m++ == map.empty ? 1 : 0;
+		if (curr[col] == 1 && solution->dimension == 0)
+			store(solution, row, col, 1);
 		while (++col < map.cols)
 		{
-			off = row * map.cols + col;
-			if (sum[off] > solution.dimension)
-			{
-				solution.dimension = sum[off];
-				solution.row = row;
-				solution.col = col;
-			}
+			curr[col] = *m++ == map.empty ?
+				min3(curr[col - 1], prev[col], prev[col - 1]) + 1 : 0;
+			if (solution->dimension < curr[col])
+				store(solution, row, col, curr[col]);
 		}
+		m++;
 	}
-	free(sum);
-	return (solution);
+}
+
+void		solve_first(t_map map, t_solution *solution)
+{
+	int		col;
+
+	col = -1;
+	while (++col < map.cols)
+	{
+		map.even[col] = map.map[col] == map.empty ? 1 : 0;
+		if (map.even[col] == 1 && solution->dimension == 0)
+			store(solution, 0, col, 1);
+	}
 }
 
 t_solution	solve(t_map map)
 {
-	int		*sum;
-	int		row;
-	int		col;
-	long	off;
+	t_solution	solution;
 
-	sum = malloc(map.rows * map.cols * sizeof(int));
-	col = -1;
-	while (++col < map.cols)
-		sum[col] = map.map[col] == map.empty;
-	row = 0;
-	while (++row < map.rows)
-	{
-		sum[row * map.cols] = map.map[row * map.cols] == map.empty;
-		col = 0;
-		while (++col < map.cols)
-		{
-			off = row * map.cols + col;
-			sum[off] = (map.map[off] != map.empty) ? 0 :
-			min3(sum[row * map.cols + col - 1], sum[(row - 1) * map.cols + col],
-				sum[(row - 1) * map.cols + col - 1]) + 1;
-		}
-	}
-	return (find_solution(map, sum));
+	solution.dimension = 0;
+	solve_first(map, &solution);
+	solve_rest(map, &solution);
+	return (solution);
 }

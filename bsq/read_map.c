@@ -30,10 +30,17 @@ int		ft_atoi(char *str)
 	return (number);
 }
 
-bool	cleanup(char *memory)
+bool	prepare_map(t_map *map)
 {
-	free(memory);
-	return (false);
+	map->even = malloc(map->cols * sizeof(int));
+	map->odd = malloc(map->cols * sizeof(int));
+	if (map->even == NULL || map->odd == NULL)
+	{
+		free(map->even);
+		free(map->odd);
+		return (false);
+	}
+	return (true);
 }
 
 bool	load_map(t_map *map, int fileid)
@@ -55,13 +62,14 @@ bool	load_map(t_map *map, int fileid)
 		map->map[i] = first_line[i];
 	map->map[i] = '\n';
 	free(first_line);
-	len = read(fileid, map->map + map->cols + 1, (map->rows - 1) * map->cols);
-	if (len != (map->rows - 1) * map->cols)
+	len = read(fileid, map->map + map->cols + 1,
+					(map->rows - 1) * (map->cols + 1));
+	if (len != (map->rows - 1) * (map->cols + 1))
 	{
 		free(map->map);
 		return (false);
 	}
-	return (true);
+	return (prepare_map(map));
 }
 
 bool	is_print(char c)

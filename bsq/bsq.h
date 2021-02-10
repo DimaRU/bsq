@@ -22,8 +22,8 @@ typedef struct	s_map
 	char		obstacle;
 	char		full;
 	char		*map;
-	long		*prev;
-	long		*curr;
+	int			*even;
+	int			*odd;
 }				t_map;
 
 typedef struct	s_solution

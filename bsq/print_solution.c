@@ -26,15 +26,9 @@ void	print_solution(t_solution solution, t_map map)
 		col = solution.col - solution.dimension;
 		while (++col <= solution.col)
 		{
-			offset = row * map.cols + col;
+			offset = row * (map.cols + 1) + col;
 			map.map[offset] = map.full;
 		}
 	}
-	row = -1;
-	while (++row < map.rows)
-	{
-		offset = row * map.cols;
-		write(STDOUT_FILENO, map.map + offset, map.cols);
-		ft_putstr("\n");
-	}
+	write(STDOUT_FILENO, map.map, map.rows * (map.cols + 1));
 }
