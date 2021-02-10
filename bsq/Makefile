@@ -1,7 +1,7 @@
 # ************************************************************************** #
 #                                                                            #
 #                                                        :::      ::::::::   #
-#   @filename.c@                                       :+:      :+:    :+:   #
+#   Makefile                                           :+:      :+:    :+:   #
 #                                                    +:+ +:+         +:+     #
 #   By: ssantiag <ssantiag@student.21-school.ru>   +#+  +:+       +#+        #
 #                                                +#+#+#+#+#+   +#+           #
@@ -18,7 +18,7 @@ SRC  =	main.c \
 		read_map.c \
 		solve.c \
 		read_line.c \
-		ft_putstr.c \
+		ft_putstr_err.c \
 		ft_strlen.c
 
 OBJ  	= ${SRC:.c=.o}
