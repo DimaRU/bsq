@@ -67,7 +67,7 @@ bool	load_map(t_map *map, int fileid)
 	row = 0;
 	while (++row < map->rows)
 	{
-		len = read(fileid, first_line, map->cols + 1);
+		len = read_to(fileid, first_line, map->cols + 1);
 		if (len != map->cols + 1 || !bitpack(*map, first_line, row))
 			return (cleanup(first_line, map->map));
 	}

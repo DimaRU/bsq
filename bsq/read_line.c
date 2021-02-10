@@ -65,3 +65,21 @@ char	*read_line(int fileid)
 	}
 	return (NULL);
 }
+
+long	read_to(int fileid, char *line, long size)
+{
+	long len;
+	long count;
+
+	count = 0;
+	while (count < size)
+	{
+		len = read(fileid, line + count, size - count);
+		if (len == -1)
+			return (-1);
+		if (len == 0)
+			break ;
+		count += len;
+	}
+	return (count);
+}

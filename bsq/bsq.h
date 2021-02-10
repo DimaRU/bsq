@@ -42,5 +42,6 @@ char			*read_line(int fileid);
 bool			is_print(char c);
 bool			bitpack(t_map map, char *line, int row);
 void			bitunpack(t_map map, char *line, int row);
+long			read_to(int fileid, char *line, long size);
 
 #endif
