@@ -43,6 +43,12 @@ bool	prepare_map(t_map *map)
 	return (true);
 }
 
+bool	cleanup(char *memory)
+{
+	free(memory);
+	return (false);
+}
+
 bool	load_map(t_map *map, int fileid)
 {
 	char	*first_line;
@@ -53,28 +59,20 @@ bool	load_map(t_map *map, int fileid)
 		return (false);
 	map->cols = ft_strlen(first_line);
 	if ((map->map = malloc(map->rows * (map->cols + 1))) == NULL)
-	{
-		free(first_line);
-		return (false);
-	}
+		return (cleanup(first_line));
 	i = -1;
 	while (++i < map->cols)
 		map->map[i] = first_line[i];
 	map->map[i] = '\n';
 	free(first_line);
-	len = read(fileid, map->map + map->cols + 1,
-					(map->rows - 1) * (map->cols + 1));
-	if (len != (map->rows - 1) * (map->cols + 1))
+	i = 0;
+	while (++i < map->rows)
 	{
-		free(map->map);
-		return (false);
+		len = read(fileid, map->map + i * (map->cols + 1), map->cols + 1);
+		if (len != map->cols + 1)
+			return (cleanup(map->map));
 	}
 	return (prepare_map(map));
-}
-
-bool	is_print(char c)
-{
-	return (c >= ' ' && c <= '\x7e');
 }
 
 bool	read_map(t_map *map, int fileid)

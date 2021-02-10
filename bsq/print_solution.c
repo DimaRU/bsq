@@ -20,15 +20,18 @@ void	print_solution(t_solution solution, t_map map)
 	int		col;
 	long	offset;
 
-	row = solution.row - solution.dimension;
-	while (++row <= solution.row)
+	row = -1;
+	while (++row <= map.rows)
 	{
-		col = solution.col - solution.dimension;
-		while (++col <= solution.col)
+		if (row > solution.row - solution.dimension && row <= solution.row)
 		{
-			offset = row * (map.cols + 1) + col;
-			map.map[offset] = map.full;
+			col = solution.col - solution.dimension;
+			while (++col <= solution.col)
+			{
+				offset = row * (map.cols + 1) + col;
+				map.map[offset] = map.full;
+			}
 		}
+		write(STDOUT_FILENO, map.map + row * (map.cols + 1), map.cols + 1);
 	}
-	write(STDOUT_FILENO, map.map, map.rows * (map.cols + 1));
 }

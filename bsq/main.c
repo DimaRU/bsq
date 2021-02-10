@@ -16,6 +16,11 @@
 #include "bsq.h"
 #include "ft_tools.h"
 
+bool	is_print(char c)
+{
+	return (c >= ' ' && c <= '\x7e');
+}
+
 bool	process_file(int fileid)
 {
 	t_map		map;
