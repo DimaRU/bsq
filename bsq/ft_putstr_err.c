@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-void	ft_putstr(char *str)
+void	ft_putstr_err(char *str)
 {
 	char *end_pointer;
 
@@ -23,5 +23,5 @@ void	ft_putstr(char *str)
 	end_pointer = str;
 	while (*end_pointer != '\0')
 		end_pointer++;
-	write(1, str, end_pointer - str);
+	write(STDERR_FILENO, str, end_pointer - str);
 }
